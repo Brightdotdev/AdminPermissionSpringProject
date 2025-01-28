@@ -35,3 +35,38 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+
+# IntelliJ IDEA specific files
+.idea/
+
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Target directory for Maven/Gradle builds
+target/
+
+# Java class files
+*.class
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Maven-specific files
+dependency-reduced-pom.xml
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+
+appliction.yml
+
+*yml
