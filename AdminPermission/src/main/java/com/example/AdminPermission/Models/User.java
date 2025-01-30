@@ -21,7 +21,7 @@ public class User {
     private String password;
 
     @Column(nullable = false) // Role is required
-    private String role = "USER"; // Default role is "USER"
+    private String role = "ROLE_USER"; // Default role is "USER"
 
     @Column(nullable = false) // Contact number is required
     private String phoneNumber;
@@ -38,17 +38,16 @@ public class User {
     @Column(nullable = false) // Tracks when the user was last updated
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    public User(String name, String email, String password, String phoneNumber, String profilePictureUrl, String address, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.id = id;
+    public User(String name, String email, String password, String phoneNumber,
+                String profilePictureUrl, String address) {
+
         this.name = name;
         this.email = email;
         this.password = password;
-        this.role = role;
         this.phoneNumber = phoneNumber;
         this.profilePictureUrl = profilePictureUrl;
         this.address = address;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+
     }
 
     public User() {

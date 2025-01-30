@@ -2,6 +2,7 @@ package com.example.AdminPermission.Services;
 
 import com.example.AdminPermission.Models.User;
 import com.example.AdminPermission.Repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
@@ -9,7 +10,8 @@ import java.util.Optional;
 @Service
 public class UserServices{
 
-    public final UserRepository userRepository;
+    @Autowired
+    public UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -30,7 +32,18 @@ public class UserServices{
     }
 
 
+    public Optional<User> getUserById(int id) {
+        return userRepository.findById(id);
+    }
+
+
+    // Delete a user by ID
+    public void deleteUser(int id) {
+        userRepository.deleteById(id);
+    }
+
     public Optional<User> getUserByUsername(String email) {
         return userRepository.findByEmail(email);
     }
+
 }
