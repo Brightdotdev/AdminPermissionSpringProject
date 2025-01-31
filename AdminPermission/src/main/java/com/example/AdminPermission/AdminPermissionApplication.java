@@ -8,6 +8,7 @@ public class
 AdminPermissionApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(AdminPermissionApplication.class, args);
 	}
 
