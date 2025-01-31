@@ -32,9 +32,11 @@ public class UserServices{
     }
 
 
-    public Optional<User> getUserById(int id) {
-        return userRepository.findById(id);
-    }
+
+
+
+
+    public Optional<User> getUserById(int id) {return userRepository.findById(id);}
 
 
     // Delete a user by ID

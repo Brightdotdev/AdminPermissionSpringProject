@@ -1,5 +1,6 @@
 package com.example.AdminPermission.Controllers;
 
+import com.example.AdminPermission.RequestBody.AuthRequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +13,8 @@ public class AuthControllers {
 
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest loginRequest) {
-        // Spring Security will handle authentication
+    public String login(@RequestBody AuthRequestBody.LoginRequest loginRequest) {
         return "Login successful!";
     }
+
 }

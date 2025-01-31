@@ -1,7 +1,6 @@
 package com.example.AdminPermission;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
@@ -35,6 +34,7 @@ public class Config {
                         .requestMatchers("/home").permitAll()
                         .requestMatchers("/auth/**  ").permitAll()
 
+                        .requestMatchers("/auth/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/items/**").hasAnyRole("USER", "ADMIN") // All users can read items
                         .requestMatchers("/api/users/**").hasAnyRole("ADMIN", "USER")
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Only admins can access admin routes
@@ -42,11 +42,7 @@ public class Config {
 
                         .requestMatchers("/user/**").authenticated()
                         .requestMatchers("/api/**").authenticated()
-                        .requestMatchers("/user/**").hasRole("USER") // Only authenticated users can access
-
-                        .requestMatchers(HttpMethod.POST, "/api/items/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/items/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/items/**").hasRole("ADMIN")// Users wont have access to the create, update and delete method
+                        .requestMatchers("/user/**").hasRole("USER") // Only authenticated users can acce
 
                        .anyRequest().authenticated()
                 )

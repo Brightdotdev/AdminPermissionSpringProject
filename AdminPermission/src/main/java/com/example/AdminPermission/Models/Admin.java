@@ -2,6 +2,7 @@ package com.example.AdminPermission.Models;
 import com.example.AdminPermission.Utils.Utils;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -30,6 +31,10 @@ public class Admin {
     @Column(unique = true, nullable = false) // Email must be unique and required
     private String email;
 
+
+
+    @Column(name = "adminBlacklist") // Email must be unique and required
+    private List<String> adminBlackList;
 
 
     @Column(unique = true, nullable = false) // Email must be unique and required
