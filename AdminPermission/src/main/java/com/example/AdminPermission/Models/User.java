@@ -14,6 +14,13 @@ public class User {
     @Column(nullable = false) // Name is required
     private String name;
 
+
+
+
+    @Column(nullable = false) // Name is required
+    private boolean isBlocked = false;
+
+
     @Column(unique = true, nullable = false) // Email must be unique and required
     private String email;
 
@@ -38,7 +45,7 @@ public class User {
     @Column(nullable = false) // Tracks when the user was last updated
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    public User(String name, String email, String password, String phoneNumber,
+    public User(String name, String email,boolean isBlocked, String password, String phoneNumber,
                 String profilePictureUrl, String address) {
 
         this.name = name;
@@ -47,7 +54,7 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.profilePictureUrl = profilePictureUrl;
         this.address = address;
-
+        this.isBlocked = isBlocked;
     }
 
     public User() {
@@ -59,6 +66,14 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
     }
 
     public String getName() {

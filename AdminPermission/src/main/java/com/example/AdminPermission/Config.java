@@ -34,6 +34,7 @@ public class Config {
                         .requestMatchers("/home").permitAll()
                         .requestMatchers("/auth/**  ").permitAll()
 
+                        .requestMatchers("/auth/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/items/**").hasAnyRole("USER", "ADMIN") // All users can read items
                         .requestMatchers("/api/users/**").hasAnyRole("ADMIN", "USER")
                         .requestMatchers("/admin/**").hasRole("ADMIN") // Only admins can access admin routes
