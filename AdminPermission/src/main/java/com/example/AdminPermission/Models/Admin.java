@@ -2,46 +2,65 @@ package com.example.AdminPermission.Models;
 import com.example.AdminPermission.Utils.Utils;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 @Entity
 @Table(name = "admins")
-public class Admin {
+public class Admin{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    public Admin(int id, String name, String email, String password, String phoneNumber,
-                 String department
-                 ) {
-        this.id = id;
+    @Column(nullable = false)
+    private String name;
+
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
+    }
+
+    @Column(nullable = false)
+    private boolean isBlocked = false;
+
+    @Column(unique = true, nullable = false)
+    private String adminToken = Utils.generateAdminToken();
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String role = "ROLE_ADMIN";
+
+    private String phoneNumber;
+
+    @Column(nullable = true)
+    private String profilePictureUrl;
+
+    @Column(nullable = false, updatable = false) // Timestamp of creation
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(nullable = false) // Tracks when the admin was last updated
+    private LocalDateTime updatedAt = LocalDateTime.now();
+
+
+    public Admin() {
+    }
+
+    public Admin( String name, String email, String password, String phoneNumber
+    ) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.department = department;
-
     }
 
-    @Column(nullable = false) // Name is required
-    private String name;
-
-    @Column(unique = true, nullable = false) // Email must be unique and required
-    private String email;
-
-
-
-    @Column(name = "adminBlacklist") // Email must be unique and required
-    private List<String> adminBlackList;
-
-
-    @Column(unique = true, nullable = false) // Email must be unique and required
-    private String adminToken = Utils.generateAdminToken();
-
-    public Admin() {
-    }
 
     public int getId() {
         return id;
@@ -74,13 +93,12 @@ public class Admin {
     public void setAdminToken(String adminToken) {
         this.adminToken = adminToken;
     }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getRole() {
@@ -107,14 +125,6 @@ public class Admin {
         this.profilePictureUrl = profilePictureUrl;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -131,24 +141,5 @@ public class Admin {
         this.updatedAt = updatedAt;
     }
 
-    @Column(nullable = false) // Password is required
-    private String password;
 
-    @Column(nullable = false) // Role is required
-    private String role = "ROLE_ADMIN"; // Default role is "ADMIN"
-
-    @Column(nullable = false) // Contact number is required
-    private String phoneNumber;
-
-    @Column(nullable = true) // Optional profile picture
-    private String profilePictureUrl;
-
-    @Column(nullable = true) // Optional department
-    private String department;
-
-    @Column(nullable = false, updatable = false) // Timestamp of creation
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @Column(nullable = false) // Tracks when the admin was last updated
-    private LocalDateTime updatedAt = LocalDateTime.now();
 }

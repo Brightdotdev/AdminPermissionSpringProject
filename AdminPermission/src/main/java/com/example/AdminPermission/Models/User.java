@@ -1,51 +1,46 @@
 package com.example.AdminPermission.Models;
-
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
-public class User {
-
+public class User{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment primary key
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false) // Name is required
+    @Column(nullable = false)
     private String name;
 
-
-
-
-    @Column(nullable = false) // Name is required
+    @Column(nullable = false)
     private boolean isBlocked = false;
 
 
-    @Column(unique = true, nullable = false) // Email must be unique and required
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false) // Password is required
+    @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false) // Role is required
-    private String role = "ROLE_USER"; // Default role is "USER"
+    @Column(nullable = false)
+    private String role = "ROLE_USER";
 
-    @Column(nullable = false) // Contact number is required
+    @Column(nullable = false)
     private String phoneNumber;
 
-    @Column(nullable = true) // Optional profile picture
+    @Column(nullable = true)
     private String profilePictureUrl;
 
-    @Column(nullable = true) // Optional address field
+    @Column(nullable = true)
     private String address;
 
-    @Column(nullable = false, updatable = false) // Timestamp of creation
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column(nullable = false) // Tracks when the user was last updated
+    @Column(nullable = false)
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    public User(String name, String email,boolean isBlocked, String password, String phoneNumber,
+    public User(String name, String email,String password, String phoneNumber,
                 String profilePictureUrl, String address) {
 
         this.name = name;
@@ -54,7 +49,6 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.profilePictureUrl = profilePictureUrl;
         this.address = address;
-        this.isBlocked = isBlocked;
     }
 
     public User() {
@@ -95,7 +89,6 @@ public class User {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }

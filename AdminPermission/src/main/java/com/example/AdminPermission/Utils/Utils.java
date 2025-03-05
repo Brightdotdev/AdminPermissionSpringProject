@@ -5,6 +5,8 @@ import java.util.Random;
 public  class Utils {
 
 
+
+
     public static  String  generateAdminToken() {
         String alphabet = "wvwrjfjJWJFNKIWNW@@#(E@JN@R(@)!Nfwjf23jnv3j4n*@&**$*!(!((@(#*@bvjvbvevn!(@";
 
@@ -21,5 +23,5 @@ public  class Utils {
         }
         return token.toString();
     }
-
 }
+
